@@ -1,0 +1,321 @@
+﻿@model RCA.Models.Veicolo
+
+@{
+    ViewBag.Title = "DettagliVeicolo";
+}
+
+
+@if (TempData["ConfermaModifichePolizza"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["ConfermaModifichePolizza"]
+    </div>
+}
+
+@if (TempData["ConfermaModificheSinistro"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["ConfermaModificheSinistro"]
+    </div>
+}
+<h2><a class="btn btn-warning mx-2" href="/RCA/DettagliAssicurato/@Request.Cookies["PROPRIETARIO_COOKIE"]["ID"]"> <i class="fa-solid fa-chevron-left"></i> </a>Dettagli Veicolo</h2>
+
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Targa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Targa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Marca)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Marca)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Modello)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Modello)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cilindrata)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cilindrata)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Potenza)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Potenza)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DataImmatricolazione)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DataImmatricolazione)
+        </dd>
+
+    </dl>
+</div>
+
+<h3>POLIZZE <a class="btn btn-success mx-2" href="/RCA/CreatePolizza"> <i class="fa-solid fa-plus"></i></a></h3>
+
+<table class="table table-success table-striped">
+    <tr class="table-info">
+        <th>
+            <p>Data Stipula</p>
+        </th>
+        <th>
+            <p>Data Scadenza</p>
+        </th>
+        <th>
+            <p>Rata</p>
+        </th>
+        <th>
+            <p>Saldo effettuato</p>
+        </th>
+        <th>
+            <p>Data Saldo</p>
+        </th>
+        <th>
+
+        </th>
+    </tr>
+    @foreach (var item in Model.listaPolizze)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Stipula)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Scadenza)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ImportoRata)
+            </td>
+            <td>
+                <div class="containercheck" id="busbox">
+                    @Html.DisplayFor(modelItem => item.Saldata)
+                    <span class="checkmark">
+                        <span class="checkedicon">
+                            @{
+                                if (item.Saldata == true)
+                                {
+                                    <i class="fa-solid fa-square-check"></i>
+                                }
+                                else
+                                {
+                                    <i class="fa-solid fa-square-xmark"></i>
+                                }
+                            }
+
+                        </span>
+                    </span>
+                    <div id="notif1" :class="{noNotify: notifica0 , notify: notifica1}"></div>
+                </div>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataSaldo)
+            </td>
+            <td>
+                <a class="btn btn-warning mx-2" href="/RCA/EditPolizza/@item.ID"> <i class="fa-solid fa-edit"></i></a>
+                @*@Html.ActionLink("Modifica", "EditPolizza", new { id = item.ID })*@
+                @*@Html.ActionLink("Delete", "Delete", new { id = item.ID })*@
+            </td>
+        </tr>
+    }
+</table>
+
+<h3>Sinistri <a class="btn btn-success mx-2" href="/RCA/CreateSinistro"> <i class="fa-solid fa-plus"></i></a></h3>
+
+<table class="table table-success table-striped">
+    <tr class="table-info">
+        <th>
+            <p>Data Apertura</p>
+        </th>
+        <th>
+            <p>Località</p>
+        </th>
+        <th>
+            <p>Numero Coinvolti</p>
+        </th>
+        <th>
+            <p>Veicolo Coinvolto</p>
+        </th>
+        <th>
+            <p>Liquidazione (Y/N)</p>
+        </th>
+        <th>
+            <p>Data Liquidazione</p>
+        </th>
+        <th>
+            <p>Importo Liquidazione</p>
+        </th>
+        <th>
+        </th>
+    </tr>
+    @foreach (var item in Model.listaSinistri)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataApertura)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Localita)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumPersone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Veicolo.ID)
+            </td>
+            <td>
+                <div class="containercheck" id="busbox">
+                    @Html.DisplayFor(modelItem => item.Liquidazione)
+                    <span class="checkmark">
+                        <span class="checkedicon">
+                            @{
+                                if (item.Liquidazione == true)
+                                {
+                                    <i class="fa-solid fa-square-check"></i>
+                                }
+                                else
+                                {
+                                    <i class="fa-solid fa-square-xmark"></i>
+                                }
+                            }
+
+                        </span>
+                    </span>
+                    <div id="notif1" :class="{noNotify: notifica0 , notify: notifica1}"></div>
+                </div>
+                @*@Html.DisplayFor(modelItem => item.Liquidazione)*@
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataLiquidazione)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ImportoLiquidazione)
+            </td>
+            <td>
+                <a class="btn btn-warning mx-2" href="/RCA/EditSinistro/@item.ID"> <i class="fa-solid fa-edit"></i></a>
+                @*@Html.ActionLink("Modifica", "EditSinistro", new { id = item.ID })*@
+            </td>
+        </tr>
+    }
+</table>
+
+@if (Convert.ToBoolean(Request.QueryString["ViewNonLiquidati"]) != true)
+{
+    <p>
+        <a class="btn btn-warning" href="/RCA/DettagliVeicolo/@Model.ID?ViewNonLiquidati=true"><i class="fa-solid fa-eye"></i> Mostra Elenco Sinistri Liquidati</a>
+    </p>
+}
+else
+{
+    <p>
+        <a class="btn btn-warning" href="/RCA/DettagliVeicolo/@Model.ID?ViewNonLiquidati=false"><i class="fa-solid fa-eye-slash"></i> Nascondi Elenco Sinistri NON Liquidati</a>
+    </p>
+}
+
+
+
+@if (Convert.ToBoolean(Request.QueryString["ViewNonLiquidati"]) == true)
+    {
+    <table class="table table-success table-striped">
+        <tr class="table-info">
+            <th>
+                <p>Data Apertura</p>
+            </th>
+            <th>
+                <p>Località</p>
+            </th>
+            <th>
+                <p>Numero Coinvolti</p>
+            </th>
+            <th>
+                <p>Veicolo Coinvolto</p>
+            </th>
+            <th>
+                <p>Liquidazione (Y/N)</p>
+            </th>
+            <th>
+                <p>Data Liquidazione</p>
+            </th>
+            <th>
+                <p>Importo Liquidazione</p>
+            </th>
+        </tr>
+
+        @foreach (var item in Model.listaSinistri)
+        {
+            if (item.Liquidazione == false)
+            {
+
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DataApertura)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Localita)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NumPersone)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Veicolo.ID)
+                    </td>
+                    <td>
+
+                        <div class="containercheck" id="busbox">
+                            @Html.DisplayFor(modelItem => item.Liquidazione)
+                            <span class="checkmark">
+                                <span class="checkedicon">
+                                    @{
+                                        if (item.Liquidazione == true)
+                                        {
+                                            <i class="fa-solid fa-square-check"></i>
+                                        }
+                                        else
+                                        {
+                                            <i class="fa-solid fa-square-xmark"></i>
+                                        }
+                                    }
+
+                                </span>
+                            </span>
+                            <div id="notif1" :class="{noNotify: notifica0 , notify: notifica1}"></div>
+                        </div>
+
+                        @*@Html.DisplayFor(modelItem => item.Liquidazione)*@
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DataLiquidazione)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ImportoLiquidazione)
+                    </td>
+                </tr>
+            }
+
+        }
+    </table>
+    }
+

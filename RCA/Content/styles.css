@@ -1,0 +1,110 @@
+﻿*{
+    font-family: 'Montserrat', sans-serif;
+    margin:0;
+    padding:0;
+}
+
+
+.mygradient{
+    background: rgb(72,186,246);
+    background: linear-gradient(84deg, rgba(72,186,246,1) 0%, rgba(72,98,246,1) 50%, rgba(72,186,246,1) 100%);
+    box-shadow: 1px 10px 10px #00000030;
+}
+
+h1{
+    color: #e1e1e1;
+}
+
+.titlepage {
+    color: #000f62;
+    margin-right: 20px;
+}
+/*.loginbtn {
+    background-color: rgb(72,186,246);*/
+/*background: linear-gradient(84deg, rgba(72,186,246,1) 0%, rgba(72,98,246,1) 50%, rgba(72,186,246,1) 100%);*/
+/*box-shadow: 1px 10px 10px #00000030;
+}*/
+.logincard {
+    width: 50%;
+    padding: 10px 18px 20px 18px;
+    border-radius: 10px;
+    margin: 0 auto;
+}
+
+.tabelladashboard {
+    background-color: rgb(47, 103, 245, 0.1);
+    max-width: 100%;
+    border-radius: 8px;
+    border: solid thin;
+}
+
+footer {
+    background-color: #3e3e3e;
+    color: #a1a1a1;
+    padding: 15px;
+}
+
+.tabrow:nth-child(2n+1){
+   background-color: rgb(128, 128, 128, 0,45);
+}
+
+.containercheck {
+    height: 20px;
+    width: 20px;
+    padding: 0px 5px;
+    display: flex;
+    display: block;
+    position: relative;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.containercheck input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 100;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+}
+
+.checkmark {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 0;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    /*background-color: #ffffff;*/
+    /*box-shadow: 0px 3px 0px #a1a1a1;*/
+}
+
+.checkmark:active {
+    height: 450px;
+}
+
+.checkedicon {
+    font-size: 1.1rem;
+    color: #cc5a5a;
+    text-align: center;
+    transition: all 200ms;
+}
+
+.containercheck input:checked ~ .checkmark {
+    /*box-shadow: 0px 3px 0px rgb(72,186,246);*/
+    /*background-color: #0a00ff;*/
+}
+
+.containercheck input:checked ~ .checkmark > .checkedicon {
+    display: block;
+    color: rgb(72,186,246);
+}

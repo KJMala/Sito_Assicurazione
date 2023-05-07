@@ -1,0 +1,70 @@
+﻿@model RCA.Models.Proprietario
+
+@{
+    ViewBag.Title = "InfoUtente";
+}
+
+<h2>Anagrafica Utente<a class="btn btn-warning m-1" href="/User/EditUtente/@Model.ID"><i class="fa-solid fa-edit py-2"></i></a></h2>
+
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cognome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cognome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sesso)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sesso)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Indirizzo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Indirizzo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ComuneResidenza)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ComuneResidenza)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CF)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CF)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Telefono)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Telefono)
+        </dd>
+
+    </dl>
+</div>

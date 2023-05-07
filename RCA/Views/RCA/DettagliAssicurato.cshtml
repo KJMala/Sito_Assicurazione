@@ -1,0 +1,125 @@
+﻿@model RCA.Models.Proprietario
+
+@{
+    ViewBag.Title = "DettagliAssicurato";
+}
+
+@if (TempData["ConfermaModificheVeicolo"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["ConfermaModificheVeicolo"]
+    </div>
+}
+
+<h2><a class="btn btn-warning mx-2" href="/RCA/Dashboard"> <i class="fa-solid fa-chevron-left"></i> </a>Dettagli Assicurato</h2>
+
+<table class="table table-success table-striped">
+    <tr class="table-info">
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cognome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sesso)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Indirizzo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ComuneResidenza)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CF)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Telefono)
+        </th>
+    </tr>
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => Model.Nome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => Model.Cognome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => Model.Sesso)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => Model.Indirizzo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => Model.ComuneResidenza)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => Model.CF)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => Model.Telefono)
+        </td>
+    </tr>
+
+</table>
+
+
+<a class="btn btn-primary mx-2 mb-3" href="/RCA/CreateVeicolo"> <i class="fa-solid fa-plus"></i> Aggiungi Veicolo </a>
+
+<table class="table table-success table-striped">
+    <tr class="table-info">
+        <th>
+            <p>Targa</p>
+        </th>
+        <th>
+            <p>Marca</p>
+        </th>
+        <th>
+            <p>Modello</p>
+        </th>
+        <th>
+            <p>Cilindrata</p>
+        </th>
+        <th>
+            <p>Potenza</p>
+        </th>
+        <th>
+            <p>Data Immatricolazione</p>
+        </th>
+        <th>
+        </th>
+    </tr>
+
+    @foreach (var item in Model.listaVeicoli)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Targa)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Marca)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Modello)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cilindrata)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Potenza)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataImmatricolazione)
+            </td>
+            <td>
+                <a class="btn btn-warning" href="/RCA/EditVeicolo/@item.ID"><i class="fa-solid fa-edit"></i></a>
+                <a class="btn btn-primary" href="/RCA/DettagliVeicolo/@item.ID"><i class="fa-solid fa-user-shield"></i></a>
+
+
+                @*@Html.ActionLink("Modifica", "EditVeicolo", new { id = item.ID }) |
+                    @Html.ActionLink("Polizze e Sinistri", "DettagliVeicolo", new { id = item.ID })*@
+            </td>
+        </tr>
+    }
+</table>
+

@@ -1,0 +1,60 @@
+﻿@model IEnumerable<RCA.Models.Veicolo>
+
+@{
+    ViewBag.Title = "DashboardVeicoli";
+}
+<div class="container d-flex align-items-center p-3 justify-content-between">
+    <h2 class="titlepage">Veicoli sull'Arca.NET</h2>
+    <table class="table table-success table-striped">
+        <tr class="table-info">
+            <th>
+                @Html.DisplayNameFor(model => model.Targa)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Marca)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Modello)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cilindrata)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Potenza)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataImmatricolazione)
+            </th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Targa)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Marca)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Modello)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cilindrata)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Potenza)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DataImmatricolazione)
+                </td>
+                @*<td>
+                    @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+                    @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+                </td>*@
+            </tr>
+        }
+
+    </table>
+</div>
+

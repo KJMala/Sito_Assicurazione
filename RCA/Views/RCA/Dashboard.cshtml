@@ -1,0 +1,91 @@
+﻿@model IEnumerable<RCA.Models.Proprietario>
+
+@{
+    ViewBag.Title = "Dashboard";
+}
+
+
+@{ if (User.Identity.IsAuthenticated)
+    {
+    <h2 class="titlepage text-center p-3 fw-bold"> Benvenuto in ARCA.NET, @User.Identity.Name </h2>
+
+        <p class="text-center">
+            <a class="btn btn-primary text-white" href="/RCA/CreateAssicurato"><i class="fa-solid fa-user-plus"></i> Inserisci Cliente</a>
+        </p>
+
+        }
+    }
+
+
+<h3 class="titlepage text-center p-2 fw-semibold">Clienti:</h3>
+
+@if (TempData["ConfermaModificheAssicurato"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["ConfermaModificheAssicurato"]
+    </div>
+}
+
+
+    <table class="table table-success table-striped">
+        <tr class="table-info">
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cognome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Sesso)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Indirizzo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ComuneResidenza)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CF)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Telefono)
+            </th>
+            <th></th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr class="tabrow">
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cognome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Sesso)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Indirizzo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ComuneResidenza)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CF)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Telefono)
+                </td>
+                <td>
+                    @if (User.Identity.IsAuthenticated)
+                    {<div class="d-flex gap-2">
+                        <a class="btn btn-primary" href="/RCA/EditAssicurato/@item.ID"><i class="fa-solid fa-pen-to-square"></i></a>
+                        <a class="btn btn-warning" href="/RCA/DettagliAssicurato/@item.ID"><i class="fa-solid fa-car-side"></i></a>
+                        @*@Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+                    </div>
+                    }
+
+                </td>
+            </tr>
+        }
+    </table>

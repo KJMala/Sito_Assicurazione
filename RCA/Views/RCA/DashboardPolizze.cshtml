@@ -1,0 +1,76 @@
+﻿@model IEnumerable<RCA.Models.Polizza>
+
+@{
+    ViewBag.Title = "DashboardPolizze";
+}
+
+
+<div class="container d-flex align-items-center p-3 justify-content-between">
+    <h2 class="titlepage">Polizze Attive</h2>
+    <table class="table table-success table-striped">
+        <tr class="table-info">
+            <th>
+                @Html.DisplayNameFor(model => model.Stipula)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Scadenza)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ImportoRata)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Saldata)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataSaldo)
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr class="tabrow">
+                <td>
+                    @Html.DisplayFor(modelItem => item.Stipula)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Scadenza)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.ImportoRata)
+                    &euro;
+                </td>
+                <td class="text-center">
+                    <div class="containercheck" id="busbox">
+                        @Html.DisplayFor(modelItem => item.Saldata)
+                        <span class="checkmark">
+                            <span class="checkedicon">
+                                @{
+                                    if (item.Saldata == true)
+                                    {
+                                        <i class="fa-solid fa-square-check"></i>
+                                    }
+                                    else
+                                    {
+                                        <i class="fa-solid fa-square-xmark"></i>
+                                    }
+                                }
+
+                            </span>
+                        </span>
+                        <div id="notif1" :class="{noNotify: notifica0 , notify: notifica1}"></div>
+                    </div>
+
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DataSaldo)
+                </td>
+                @*<td>
+                    @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+                    @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+                </td>*@
+            </tr>
+        }
+
+    </table>
+</div>

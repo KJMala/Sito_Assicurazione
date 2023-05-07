@@ -1,0 +1,99 @@
+﻿@model RCA.Models.Sinistro
+
+@{
+    ViewBag.Title = "DettagliSinistroUtente";
+}
+
+
+
+
+<h2> <a class="btn btn-warning" href="/User/CercaSinistro/@Request.Cookies["USER_COOKIE"]["ID"]"> <i class="fa-solid fa-chevron-left" ></i> </a> Dettagli Sinistro</h2>
+
+@{
+    if (TempData["ErroreSinistro"] == null)
+    {
+        <div>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.DataApertura)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.DataApertura)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Localita)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Localita)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.NumPersone)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.NumPersone)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Liquidazione)
+                </dt>
+
+                <dd>
+
+                    <div class="containercheck" id="busbox">
+                        @Html.DisplayFor(modelItem => Model.Liquidazione)
+                        <span class="checkmark">
+                            <span class="checkedicon">
+                                @{
+                                    if (Model.Liquidazione == true)
+                                    {
+                                        <i class="fa-solid fa-square-check"></i>
+                                    }
+                                    else
+                                    {
+                                        <i class="fa-solid fa-square-xmark"></i>
+                                    }
+                                }
+
+                            </span>
+                        </span>
+                        <div id="notif1" :class="{noNotify: notifica0 , notify: notifica1}"></div>
+                    </div>
+
+                    @*@Html.DisplayFor(model => model.Liquidazione)*@
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.DataLiquidazione)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.DataLiquidazione)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.ImportoLiquidazione)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.ImportoLiquidazione)
+                </dd>
+
+            </dl>
+        </div>
+
+    }
+    else
+    {
+        <p class="alert alert-danger">
+            @TempData["ErroreSinistro"]
+        </p>
+    }
+}
+
+

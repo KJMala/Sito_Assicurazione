@@ -1,0 +1,80 @@
+﻿@model IEnumerable<RCA.Models.Sinistro>
+
+@{
+    ViewBag.Title = "DashboardSinistri";
+}
+
+<div class="container d-flex align-items-center p-3 justify-content-between">
+    <h2 class="titlepage">Sinistri</h2>
+    <table class="table table-success table-striped">
+        <tr class="table-info">
+            <th>
+                @Html.DisplayNameFor(model => model.DataApertura)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Localita)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumPersone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Liquidazione)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataLiquidazione)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ImportoLiquidazione)
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr class="tabrow">
+                <td>
+                    @Html.DisplayFor(modelItem => item.DataApertura)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Localita)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumPersone)
+                </td>
+                <td class="text-center">
+                    <div class="containercheck" id="busbox">
+                        @Html.DisplayFor(modelItem => item.Liquidazione)
+                        <span class="checkmark">
+                            <span class="checkedicon">
+                                @{
+                                    if (item.Liquidazione == true)
+                                    {
+                                        <i class="fa-solid fa-square-check"></i>
+                                    }
+                                    else
+                                    {
+                                        <i class="fa-solid fa-square-xmark"></i>
+                                    }
+                                }
+
+                            </span>
+                        </span>
+                        <div id="notif1" :class="{noNotify: notifica0 , notify: notifica1}"></div>
+                    </div>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DataLiquidazione)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.ImportoLiquidazione)
+                    &euro;
+                </td>
+                @*<td>
+                    @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+                    @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+                </td>*@
+            </tr>
+        }
+
+    </table>
+    </div>
